@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  ga-php:
+    container_name: ga-php
+    build:
+      dockerfile: php.Dockerfile
+      context: .
+    volumes:
+      - ".:/var/www/html/"
+      - "./container/apache2/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+    ports:
+      - "90:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  ga-db:
+    container_name: ga-db
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - 'ga_db:/var/lib/mysql'
+    environment:
+      MYSQL_DATABASE: ga_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3312:3306"
+volumes:
+  ga_db:
