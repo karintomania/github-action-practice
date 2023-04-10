@@ -17,7 +17,10 @@ jobs:
     - name: composer install
       uses: "ramsey/composer-install@v2"
       with:
-        composer-options: "--ignore-platform-reqs"
+        composer-options: "--no-dev --ignore-platform-reqs"
+
+    - name: run test
+      run: php vendor/bin/phpunit
 
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -25,3 +28,4 @@ jobs:
         server: files.000webhost.com
         username: art-api
         password: ${{ secrets.ART_API_PASSWORD }}
+        timeout: 60000
