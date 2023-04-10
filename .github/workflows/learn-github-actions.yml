@@ -20,7 +20,7 @@ jobs:
         composer-options: "--no-dev --ignore-platform-reqs"
 
     - name: run test
-      run: php vendor/bin/phpunit
+      run: php ./vendor/bin/phpunit
 
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
