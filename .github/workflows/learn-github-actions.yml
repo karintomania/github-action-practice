@@ -13,4 +13,4 @@ jobs:
       with:
         server: files.000webhost.com
         username: art-api
-        password: ${{ secrets.password }}
+        password: ${{ secrets.ART_API_PASSWORD }}
